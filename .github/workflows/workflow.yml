@@ -42,15 +42,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: '0'  # Get all tags.
 
       - name: Install python
         uses: actions/setup-python@v4
         with:
           python-version: '3.8'
+          cache: 'pip'
+          cache-dependency-path: '**/requirements.txt'
 
-      - name: Install sphinx
+      - name: Install docs deps
         run: |
-          pip install sphinx sphinx_rtd_theme exhale graphviz sphinx-multiversion
+          pip install -r ./docs/requirements.txt
 
       - name: Build docs
         run: |
