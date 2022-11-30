@@ -25,11 +25,7 @@ def specs(kind: str) -> list:
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-import sys
-from pathlib import Path
 from exhale.utils import makeCustomSpecificationsMapping
-
-sys.path.insert(0, str(Path("../src/").resolve()))
 
 
 # -- Project information -----------------------------------------------------
@@ -77,7 +73,7 @@ exhale_args = {
     "createTreeView":         False,
     "unabridgedOrphanKinds":  {"dir", "file"},
     "exhaleExecutesDoxygen":  True,
-    "exhaleDoxygenStdin":     "INPUT = ../include",
+    "exhaleDoxygenStdin":     "INPUT = ../include\nEXCLUDE_PATTERNS = *.txt",
     "customSpecificationsMapping": makeCustomSpecificationsMapping(specs)
 }
 
